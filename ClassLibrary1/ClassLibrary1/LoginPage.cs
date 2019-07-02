@@ -38,22 +38,17 @@ namespace ClassLibrary1
 
         public void Login()
         {
-            var emailInput = Driver.Instance.FindElement(By.Id("usernameOrEmail"));
+            IWebElement emailInput = Driver.Instance.FindElement(By.Id("usernameOrEmail"));
             emailInput.SendKeys(email);
 
-            var submitButton = Driver.Instance.FindElement(By.ClassName("button form-button is-primary"));
+            var submitButton = Driver.Instance.FindElement(By.CssSelector("[type='submit']"));
             submitButton.Click();
 
-            var passwordID = "password";
-            if (Driver.waitForElementToAppear(passwordID) == true)
-            {
-                var passwordInput = Driver.Instance.FindElement(By.Id(passwordID));
-                passwordInput.SendKeys(password);
+            Driver.Instance.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(15);
+            var passwordInput = Driver.Instance.FindElement(By.Id("password"));
+            passwordInput.SendKeys(password);
 
-                submitButton.Click();
-            }
-            
-
+            submitButton.Click();
 
         }
     }

@@ -14,7 +14,7 @@ namespace ClassLibrary1
         {
             get
             {
-                var username = Driver.Instance.FindElements(By.ClassName("user-name"));
+                var username = Driver.Instance.FindElements(By.ClassName("masterbar"));
                 if (username.Count > 0)
                 {
                     return true;

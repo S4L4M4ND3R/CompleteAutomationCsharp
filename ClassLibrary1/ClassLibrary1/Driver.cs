@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using log4net;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
 using System;
@@ -17,7 +18,6 @@ namespace ClassLibrary1
         public static void Initialize()
         {
             Instance = new ChromeDriver();
-            Instance.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
             Instance.Manage().Window.Maximize();
         }
 
@@ -25,18 +25,5 @@ namespace ClassLibrary1
         {
             Instance.Close();
         }
-
-        Func<IWebDriver, IWebElement> waitForElement = new Func<IWebDriver, IWebElement>((IWebDriver Web) =>
-        {
-            Console.WriteLine("Waiting for color to change");
-            IWebElement element = Web.FindElement(By.Id("target"));
-            if (element.GetAttribute("style").Contains("red"))
-            {
-                return element;
-            }
-            return null;
-        });
-
-
     }
 }

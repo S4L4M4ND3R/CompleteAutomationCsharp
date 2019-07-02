@@ -1,5 +1,6 @@
 ﻿using System;
 using ClassLibrary1;
+using log4net;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace SmokeTest
@@ -7,6 +8,7 @@ namespace SmokeTest
     [TestClass]
     public class Login
     {
+        
         [TestInitialize]
         public void InitDriver()
         {
@@ -18,8 +20,8 @@ namespace SmokeTest
         {
             LoginPage.GoTo();
             LoginPage.LoginAs("qtester111@gmail.com").WithPassword("P@ssw0rd").Login();
-
             Assert.IsTrue(Dashboard.IsAt, "Failed to login");
+            
         }
 
         [TestCleanup]
